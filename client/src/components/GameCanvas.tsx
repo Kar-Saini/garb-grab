@@ -4,30 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-interface Player {
-  id: number;
-  x: number;
-  y: number;
-  score: number;
-  color: string;
-  name: string;
-  keys: {
-    up: string;
-    down: string;
-    left: string;
-    right: string;
-  };
-}
-
-interface Coin {
-  x: number;
-  y: number;
-  id: number;
-}
-
-const GRID_SIZE = 10;
-const COIN_SPAWN_INTERVAL = 3000;
+import { Coin, Player } from "@/lib/types";
+import { COIN_SPAWN_INTERVAL, GRID_SIZE } from "@/lib/constants";
 
 export default function Component() {
   const [players, setPlayers] = useState<Player[]>([
