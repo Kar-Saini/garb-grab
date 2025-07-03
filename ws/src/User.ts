@@ -2,16 +2,17 @@ import { WebSocket } from "ws";
 import { OUTGOING_MESSAGE } from "./utils/types";
 
 export class User {
-  public initialX: number;
-  public initialY: number;
+  public x: number;
+  public y: number;
   public coinsWon: number;
   constructor(
     public userId: string,
     public userName: string,
-    public websocket: WebSocket
+    public websocket: WebSocket,
+    public avatar: string
   ) {
-    this.initialX = 0;
-    this.initialY = 0;
+    this.x = 0;
+    this.y = 0;
     this.coinsWon = 0;
   }
   sendMessage(message: OUTGOING_MESSAGE) {

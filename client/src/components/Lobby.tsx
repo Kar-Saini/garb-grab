@@ -7,8 +7,15 @@ import { AvatarSelector } from "./Avatar";
 
 const Lobby = () => {
   const connection = new Connection("https://rpc.gorbagana.wtf");
-  const { socket, userName, setUserName, accountInfo, setAccountInfo } =
-    useContext(AppContext)!;
+  const {
+    socket,
+    userName,
+    setUserName,
+    accountInfo,
+    setAccountInfo,
+    selectedAvatar,
+    navigate,
+  } = useContext(AppContext)!;
   const { publicKey } = useWallet();
 
   useEffect(() => {
@@ -38,6 +45,7 @@ const Lobby = () => {
               }
             : prev
         );
+        navigate("/room");
       }
     };
   }, [socket]);
@@ -46,14 +54,14 @@ const Lobby = () => {
     socket?.send(
       JSON.stringify({
         type: "user-join-lobby",
-        payload: { userName },
+        payload: { userName, avatar: selectedAvatar },
       })
     );
   }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center p-6 font-mono justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center p-6 font-mono justify-center gap-y-4">
       <h1 className="text-6xl  text-white mb-6">Lobby</h1>
-      <div className="bg-neutral-800/70 border border-purple-500 rounded-xl p-6 mb-10 w-full max-w-xl shadow-lg">
+      <div className="bg-neutral-800/70 border border-purple-500 rounded-xl p-6 w-full max-w-xl shadow-lg">
         <p className="text-white mb-2 text-md">
           <span className="font-semibold text-purple-400">Wallet:</span>{" "}
           {publicKey ? publicKey.toBase58() : "Not connected"}
@@ -79,20 +87,20 @@ const Lobby = () => {
               onChange={(e) => setUserName(e.target.value)}
               className="flex-1 px-4 py-2 rounded-md bg-purple-950 text-white placeholder-purple-300 border border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
-            <button
-              className={`bg-gray-600  px-4 py-2 text-white rounded-md transition cursor-auto ${
-                userName &&
-                "bg-purple-600 hover:cursor-pointer hover:bg-purple-700"
-              }`}
-              disabled={!userName || !publicKey}
-              onClick={handleJoinLobby}
-            >
-              Join Lobby
-            </button>
           </div>
         )}
       </div>
-      {accountInfo?.userName && <AvatarSelector />}
+      <AvatarSelector />
+
+      <button
+        className={`bg-gray-600  px-4 py-2 text-white rounded-md transition cursor-auto ${
+          userName && "bg-purple-600 hover:cursor-pointer hover:bg-purple-700"
+        }`}
+        disabled={!userName || !publicKey}
+        onClick={handleJoinLobby}
+      >
+        Join Lobby
+      </button>
     </div>
   );
 };

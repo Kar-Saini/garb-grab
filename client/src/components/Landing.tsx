@@ -2,12 +2,11 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { Card, CardContent } from "@/components/ui/card";
 import { Zap, Gamepad2 } from "lucide-react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AppContext } from "@/AppContextProvider";
 
 export default function LandingPage() {
-  const navigate = useNavigate();
+  const { navigate } = useContext(AppContext)!;
   const wallet = useWallet();
 
   useEffect(() => {

@@ -1,19 +1,12 @@
-// socket-context.tsx
 import React, { createContext, useEffect, useState } from "react";
-import { UserAccountInfo } from "./lib/types";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import {
+  AppContextType,
+  INCOMMING_MESSAGE,
+  RoomInformationType,
+  UserAccountInfo,
+} from "./lib/types";
+import { useNavigate } from "react-router-dom";
 import { AVATAR_LIST } from "./lib/constants";
-
-interface AppContextType {
-  socket: WebSocket | null;
-  userName: string | null;
-  setUserName: (val: string) => void;
-  accountInfo: UserAccountInfo | null;
-  setAccountInfo: React.Dispatch<React.SetStateAction<UserAccountInfo | null>>;
-  selectedAvatar: string | null;
-  setSelectedAvatar: (val: string) => void;
-  navigate: NavigateFunction;
-}
 
 export const AppContext = createContext<AppContextType | null>(null);
 
@@ -28,6 +21,8 @@ export const AppContextProvider = ({
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(
     AVATAR_LIST[0]
   );
+  const [roomInformation, setRoomInformation] =
+    useState<RoomInformationType | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,6 +52,8 @@ export const AppContextProvider = ({
         selectedAvatar,
         setSelectedAvatar,
         navigate,
+        roomInformation,
+        setRoomInformation,
       }}
     >
       {children}
