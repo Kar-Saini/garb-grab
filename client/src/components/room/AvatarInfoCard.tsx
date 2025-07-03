@@ -1,5 +1,4 @@
-import { Separator } from "@radix-ui/react-separator";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Card, CardContent } from "../ui/card";
 import { AppContext } from "@/AppContextProvider";
 

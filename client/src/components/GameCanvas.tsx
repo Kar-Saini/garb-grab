@@ -16,7 +16,7 @@ const GameCanvas = () => {
     console.log("Moving " + playerId);
     if (!players) return;
     setPlayers((prev) =>
-      prev.map((player) => {
+      prev?.map((player) => {
         if (player.userId === playerId) {
           const newX = Math.max(0, Math.min(GRID_SIZE - 1, player.x + dx));
           const newY = Math.max(0, Math.min(GRID_SIZE - 1, player.y + dy));
@@ -62,6 +62,7 @@ const GameCanvas = () => {
       window.removeEventListener("keypress", moveHandler);
     };
   }, []);
+
   useEffect(() => {
     if (!socket) return;
 

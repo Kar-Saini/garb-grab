@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
   AppContextType,
-  INCOMMING_MESSAGE,
   RoomInformationType,
   UserAccountInfo,
 } from "./lib/types";
