@@ -8,7 +8,6 @@ import { AppContext } from "@/AppContextProvider";
 export default function LandingPage() {
   const { navigate } = useContext(AppContext)!;
   const wallet = useWallet();
-
   useEffect(() => {
     if (wallet.publicKey) {
       setTimeout(() => {

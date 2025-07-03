@@ -26,7 +26,9 @@ export const AppContextProvider = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket(
+      import.meta.env.VITE_WS_SERVER || "ws://localhost:8080"
+    );
     ws.onopen = () => {
       console.log("WebSocket connected");
       setSocket(ws);
