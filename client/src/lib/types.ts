@@ -51,6 +51,14 @@ export type INCOMMING_MESSAGE =
   | {
       type: "player-moved";
       payload: { playerId: string; newX: number; newY: number };
+    }
+  | {
+      type: "game-started";
+      payload: { coins: { id: number; x: number; y: number }[] };
+    }
+  | {
+      type: "coin-collected";
+      payload: { coinId: number; playerId: string };
     };
 
 export type OUTGOING_MESSAGE = {

@@ -34,6 +34,21 @@ server.on("connection", (socket) => {
             parsedData.payload.newX,
             parsedData.payload.newY
           );
+        break;
+      case "start-game":
+        Manager.getInstance().getRoom(parsedData.payload.roomId)?.startGame();
+        break;
+      case "coin-collected":
+        Manager.getInstance()
+          .getRoom(parsedData.payload.roomId)
+          ?.broadCastExcept(parsedData.payload.playerId, {
+            type: "coin-collected",
+            payload: {
+              coinId: parsedData.payload.coinId,
+              playerId: parsedData.payload.playerId,
+            },
+          });
+        break;
     }
   });
 });

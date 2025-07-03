@@ -1,5 +1,6 @@
 import { WebSocket } from "ws";
 import { OUTGOING_MESSAGE } from "./utils/types";
+import { GRID_SIZE } from "./utils/constants";
 
 export class User {
   public x: number;
@@ -11,8 +12,8 @@ export class User {
     public websocket: WebSocket,
     public avatar: string
   ) {
-    this.x = 0;
-    this.y = 0;
+    this.x = Math.floor(Math.random() * GRID_SIZE);
+    this.y = Math.floor(Math.random() * GRID_SIZE);
     this.coinsWon = 0;
   }
   sendMessage(message: OUTGOING_MESSAGE) {

@@ -84,4 +84,8 @@ export class Room {
       payload: { playerId, newX, newY },
     });
   }
+  startGame() {
+    this.status = "active";
+    this.broadCast({ type: "game-started", payload: { coins: this.coins } });
+  }
 }

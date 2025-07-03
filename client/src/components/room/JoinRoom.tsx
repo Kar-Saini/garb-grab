@@ -22,7 +22,7 @@ const JoinRoom = () => {
   };
 
   return (
-    <Card className="bg-neutral-800/70 border-purple-500 shadow-xl">
+    <Card className="bg-neutral-800/70 border-purple-500 shadow-xl flex-1 justify-evenly">
       <CardHeader>
         <CardTitle className="text-purple-300 flex items-center gap-2">
           <LogIn className="w-5 h-5" />
@@ -30,17 +30,18 @@ const JoinRoom = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="w-full space-y-4">
+          <label className="text-sm font-medium text-purple-300">Room ID</label>
           <Input
             type="text"
-            placeholder="Enter Room ID"
+            placeholder="12345678"
             value={joinRoomId}
             onChange={(e) => setJoinRoomId(e.target.value)}
             className="flex-1 bg-purple-950/50 border-purple-700 text-white placeholder-purple-300 focus:border-purple-500"
           />
           <Button
             onClick={() => handleJoinRoom()}
-            className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 hover:cursor-pointer"
+            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 hover:cursor-pointer"
           >
             Join
           </Button>

@@ -20,6 +20,14 @@ export type INCOMMING_MESSAGE =
   | {
       type: "player-move";
       payload: { roomId: string; playerId: string; newX: number; newY: number };
+    }
+  | {
+      type: "start-game";
+      payload: { roomId: string };
+    }
+  | {
+      type: "coin-collected";
+      payload: { roomId: string; playerId: string; coinId: number };
     };
 
 export type OUTGOING_MESSAGE =
@@ -54,6 +62,14 @@ export type OUTGOING_MESSAGE =
   | {
       type: "player-moved";
       payload: { playerId: string; newX: number; newY: number };
+    }
+  | {
+      type: "game-started";
+      payload: { coins: { id: number; x: number; y: number }[] };
+    }
+  | {
+      type: "coin-collected";
+      payload: { playerId: string; coinId: number };
     };
 
 type User = {

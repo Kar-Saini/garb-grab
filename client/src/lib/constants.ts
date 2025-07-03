@@ -1,4 +1,4 @@
-export const GRID_SIZE = 10;
+export const GRID_SIZE = 8;
 export const COIN_SPAWN_INTERVAL = 3000;
 export const AVATAR_LIST = [
   "/avatar1.png",
